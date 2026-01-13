@@ -1,0 +1,34 @@
+Larry (Thar Linn Htet) Bangkok, Thailand Phone: +66627796178 Email: tlh.linnhtet@gmail.com LinkedIn: linkedin.com/in/linnhtet-larry/ GitHub: github.com/Linn-Htet123
+
+Nov 14 2025
+
+Hiring ManagerEntelli
+
+Dear Hiring Manager,
+
+I am writing to express my strong interest in the Frontend Engineer – Next.js / TypeScript / Tailwind position. With almost 4 years of experience building scalable, high-performance web applications using Next.js, TypeScript, and Tailwind CSS, I am excited about the opportunity to contribute to your platform that powers complex workflows for large engineering teams.
+
+Throughout my career, I have developed and maintained end-to-end applications using React.js, Next.js, TypeScript, and Tailwind CSS, along with backend technologies including Node.js, Express.js, and Nest.js. My professional experience spans diverse projects—from enterprise banking apps at KBZ Bank serving over 1 million users to e-commerce and real estate platforms—allowing me to optimize performance, architect scalable UI components, and ensure seamless user experiences.
+
+Why I'm a Strong Fit:
+
+Next.js & TypeScript Expertise: I have extensive hands-on experience implementing SSR/ISR patterns for optimal performance and SEO. At Quantech Co., Ltd., I developed pixel-perfect applications for international clients, achieving 30% faster page load times and 90+ Lighthouse scores.
+
+Performance-Driven Development: At KBZ Bank, I led the development of a React-based mini-app serving 1M+ users and optimized 5 production applications, consistently achieving Core Web Vitals improvements and 95+ Lighthouse scores through code-splitting, lazy loading, and performance best practices.
+
+Scalable UI Architecture: I have proven experience building reusable component libraries with proper TypeScript typing, documentation, and Storybook integration. I've translated Figma mockups into production-ready features while maintaining clean code principles and component-based architecture.
+
+
+
+Real-World Impact: I've delivered 30+ Agile sprint cycles with zero critical production bugs, collaborated with cross-functional teams (Design, Backend, BA, QA), and managed deployments using Docker containerization for consistent CI/CD workflows.
+
+What excites me most about this opportunity is the chance to work on interactive, real-time systems that power complex workflows at scale—designed for real-world performance, not prototypes. I am particularly drawn to your emphasis on technical rigor, individual ownership, and building AI-driven developer tools. I'm passionate about leveraging AI effectively in development and contributing ideas to improve engineering workflows, and I thrive in environments where end-to-end ownership and rapid iteration are encouraged.
+
+I would welcome the opportunity to discuss how my experience building intuitive, high-performance interfaces for complex systems aligns with your team's vision. Thank you very much for your time and consideration. I look forward to the possibility of joining your team and contributing to your innovative projects.
+
+Sincerely, Larry (Thar Linn Htet)
+
+
+
+
+
