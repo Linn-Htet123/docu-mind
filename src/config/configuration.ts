@@ -7,4 +7,9 @@ export default () => ({
     systemPrompt:
       process.env.OLLAMA_SYSTEM_PROMPT || 'You are a helpful AI assistant.',
   },
+  lancedb: {
+    embed_url:
+      process.env.OLLAMA_EMBED_URL || 'http://localhost:11434/api/embeddings',
+    embed_model: process.env.OLLAMA_MODEL_EMBED || 'embeddinggemma',
+  },
 });
