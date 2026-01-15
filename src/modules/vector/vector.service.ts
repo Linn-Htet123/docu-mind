@@ -23,7 +23,7 @@ export class VectorService implements OnModuleInit {
     'lancedb',
   );
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) { }
 
   async onModuleInit() {
     this.ollamaUrl = this.configService.get<string>('lancedb.embed_url')!;
@@ -33,12 +33,12 @@ export class VectorService implements OnModuleInit {
     this.logger.log(`📂 Connecting to Local LanceDB at: ${this.dbPath}`);
 
     this.db = await lancedb.connect(this.dbPath);
-    this.logger.log('✅ Connected to Local DB');
+    this.logger.log('Connected to Local DB');
 
     const tableName = 'documents';
     try {
       this.table = await this.db.openTable(tableName);
-      this.logger.log(`✅ Table '${tableName}' ready.`);
+      this.logger.log(`Table '${tableName}' ready.`);
     } catch {
       this.logger.warn(
         `Table '${tableName}' not found. Creating with Schema...`,
@@ -69,7 +69,7 @@ export class VectorService implements OnModuleInit {
     });
 
     this.logger.log(
-      `✅ Table '${tableName}' created with ${dimensions}-dim schema.`,
+      `Table '${tableName}' created with ${dimensions}-dim schema.`,
     );
   }
 

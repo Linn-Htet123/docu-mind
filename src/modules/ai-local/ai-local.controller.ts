@@ -7,16 +7,17 @@ import {
   Res,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AiLocalService } from './ai-local.service';
+import { AiLocalService } from './services/ai-local.service';
 import { ChatRequestDto } from './dto/chat-request.dto';
 import { type Response } from 'express';
 import { ChatApiDocument } from './decorator/chat.swagger';
 import { ChatStreamApiDocument } from './decorator/chat-stream.swagger';
 
+
 @ApiTags('AI')
-@Controller('ai')
+@Controller('/ai')
 export class AiLocalController {
-  constructor(private readonly aiService: AiLocalService) {}
+  constructor(private readonly aiService: AiLocalService) { }
 
   @Post('chat')
   @ChatApiDocument()

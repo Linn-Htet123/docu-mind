@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { AiLocalController } from './modules/ai-local/ai-local.controller';
 import { KnowledgeController } from './modules/knowledge/knowledge.controller';
-import { AiLocalService } from './modules/ai-local/ai-local.service';
+import { AiLocalService } from './modules/ai-local/services/ai-local.service';
 import { KnowledgeService } from './modules/knowledge/knowledge.service';
 import { FileStorageService } from '@common/common/file/file.service';
 import { FILE_SERVICE } from '@common/common';
@@ -13,6 +13,7 @@ import { VectorModule } from './modules/vector/vector.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChatMessage } from './modules/chat-history/entities/chat-message.entity';
 import { ChatHistoryModule } from './modules/chat-history/chat-history.module';
+import { AiLocalModule } from './modules/ai-local/ai-local.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,13 +28,13 @@ import { ChatHistoryModule } from './modules/chat-history/chat-history.module';
     }),
     VectorModule,
     ChatHistoryModule,
+    AiLocalModule,
   ],
-  controllers: [AppController, AiLocalController, KnowledgeController],
+  controllers: [AppController, KnowledgeController],
   providers: [
     AppService,
-    AiLocalService,
     KnowledgeService,
     { provide: FILE_SERVICE, useClass: FileStorageService },
   ],
 })
-export class AppModule {}
+export class AppModule { }
