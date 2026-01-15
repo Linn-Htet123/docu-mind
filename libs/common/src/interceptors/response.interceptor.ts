@@ -18,7 +18,6 @@ export class ResponseInterceptor implements NestInterceptor {
           return data;
         }
 
-        console.log('ResponseInterceptor - data:', data);
         if (this.isPaginatedResponse(data)) {
           const transformedPagination = {
             ...data,

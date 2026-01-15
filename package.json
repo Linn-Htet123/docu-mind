@@ -22,13 +22,16 @@
   "dependencies": {
     "@keyv/redis": "^5.1.5",
     "@lancedb/lancedb": "^0.23.0",
+    "@langchain/core": "^1.1.13",
+    "@langchain/textsplitters": "^1.0.1",
     "@nestjs/cache-manager": "^3.1.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.2.4",
-    "apache-arrow": "^21.1.0",
+    "@nestjs/typeorm": "^11.0.0",
+    "apache-arrow": "^18.1.0",
     "axios": "^1.13.2",
     "cookie-parser": "^1.4.7",
     "keyv": "^5.5.5",
@@ -37,7 +40,9 @@
     "pdf-parse-new": "^2.0.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "sqlite3": "^5.1.7",
     "swagger-ui-express": "^5.0.1",
+    "typeorm": "^0.3.28",
     "winston": "^3.19.0"
   },
   "devDependencies": {

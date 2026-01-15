@@ -1,14 +1,10 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { parseFileContent } from '@common/common/utils/file.util';
-import { FILE_SERVICE, IFileService } from '@common/common';
 import { VectorService } from '../vector/vector.service';
 
 @Injectable()
 export class KnowledgeService {
-  constructor(
-    @Inject(FILE_SERVICE) private fileStorage: IFileService,
-    private readonly vectorService: VectorService,
-  ) {}
+  constructor(private readonly vectorService: VectorService) {}
 
   async uploadDocuments(files: Array<Express.Multer.File>): Promise<any[]> {
     const results: any = [];

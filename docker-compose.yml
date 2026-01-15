@@ -1,0 +1,9 @@
+services:
+  lance-viewer:
+    image: ghcr.io/gordonmurray/lance-data-viewer:lancedb-0.24.3
+    container_name: lance-data-viewer
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./knowledge_files/lancedb:/data:ro
+    restart: unless-stopped

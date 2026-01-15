@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class ChatRequestDto {
   @ApiProperty({
     description: 'The prompt or question you want to ask the AI',
-    example: 'Explain TypeScript interfaces in simple terms.',
+    example: 'Who is the CEO?',
   })
   @IsNotEmpty()
   @IsString()
@@ -18,4 +18,11 @@ export class ChatRequestDto {
   @IsOptional()
   @IsString()
   model?: string;
+
+  @ApiProperty({
+    description: 'Session ID',
+    example: 'abedele48sjdk99dudj',
+    required: true,
+  })
+  sessionId: string;
 }

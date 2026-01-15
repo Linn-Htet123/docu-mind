@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Schema, Field, Float32, FixedSizeList, Utf8 } from 'apache-arrow';
 import * as path from 'path';
 import * as fs from 'fs/promises';
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
+import { Document } from '@langchain/core/documents';
 
 @Injectable()
 export class VectorService implements OnModuleInit {
@@ -86,36 +88,43 @@ export class VectorService implements OnModuleInit {
       throw new Error('Embedding failed');
     }
   }
-
   async addDocument(filename: string, fullText: string) {
-    // Chunking logic
-    const chunks = fullText
-      .split(/\n\s*\n/)
-      .filter((c) => c.trim().length > 50);
+    const splitter = new RecursiveCharacterTextSplitter({
+      chunkSize: 1000,
+      chunkOverlap: 200,
+      separators: ['\n\n', '\n', '. ', '!', '? ', ' - ', ' – ', ': ', ' ', ''],
+      keepSeparator: true,
+    });
 
-    const records: any[] = [];
+    const docs = await splitter.createDocuments([fullText], [{ filename }]);
 
-    for (const chunk of chunks) {
-      const vector = await this.getEmbedding(chunk);
-      records.push({
-        vector: vector,
-        text: chunk,
-        filename: filename,
-      });
-    }
+    const records = await Promise.all(
+      docs.map(async (doc: Document) => {
+        const vector = await this.getEmbedding(doc.pageContent);
+
+        return {
+          vector,
+          text: doc.pageContent,
+          filename: doc.metadata.filename,
+        };
+      }),
+    );
 
     if (records.length > 0) {
       await this.table.add(records);
     }
-    return { chunks_processed: records.length };
+
+    return {
+      chunks_processed: records.length,
+      filename,
+      original_length: fullText.length,
+    };
   }
 
   async performSearch(query: string) {
     const queryVector = await this.getEmbedding(query);
-    const results = await this.table
-      .vectorSearch(queryVector)
-      .limit(3)
-      .toArray();
+    const results = await this.table.vectorSearch(queryVector).toArray();
+
     return results;
   }
 }
