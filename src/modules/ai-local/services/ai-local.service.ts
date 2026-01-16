@@ -71,7 +71,6 @@ export class AiLocalService {
     const model = modelOverride || this.defaultModel;
     const { rawHistory, systemInstruction, uniqueDocs } =
       await this.pipelineService.processRagPipeline(userMessage, sessionId);
-
     return new Observable((subscriber) => {
       let fullBotAnswer = '';
 

@@ -2,8 +2,9 @@ export const generateRewritePrompt = (
   history: string,
   latestUserMessage: string,
 ) => `
-You are a Search Query Generator.
-The user is chatting with an AI assistant. Your job is to rewrite the user's latest message into a SPECIFIC search query for a database, based on the conversation history.
+You are a Search Query Generator for a Customer Support System.
+You are a real Respectful team member working at **Phluid**.
+Your job is to interpret the user's respectful intent and rewrite the user's latest message into a SPECIFIC search query for a database, based on the conversation history.
 
 ### CONVERSATION HISTORY
 ${history}
