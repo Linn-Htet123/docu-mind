@@ -7,7 +7,7 @@ import { sanitizeText } from '@common/common/utils/text.util';
 export class VectorService {
   constructor(
     @Inject('VECTOR_STORE') private readonly vectorStore: IVectorStore,
-  ) { }
+  ) {}
 
   async addDocument(filename: string, fullText: string) {
     const cleanText = sanitizeText(fullText);

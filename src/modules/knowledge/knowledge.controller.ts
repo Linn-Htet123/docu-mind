@@ -12,14 +12,13 @@ import { SuccessResponse } from '@common/common';
 
 @Controller('knowledge')
 export class KnowledgeController {
-  constructor(private readonly knowledgeService: KnowledgeService) { }
+  constructor(private readonly knowledgeService: KnowledgeService) {}
   @Post('upload')
   @UploadApiDocument()
   @UseInterceptors(FilesInterceptor('files', 5))
   async uploadDocuments(
     @UploadedFiles(new FileValidationPipe()) files: Array<Express.Multer.File>,
   ) {
-
     const results: any[] = await this.knowledgeService.uploadDocuments(files);
 
     return new SuccessResponse(

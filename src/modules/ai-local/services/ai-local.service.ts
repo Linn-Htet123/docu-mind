@@ -26,7 +26,6 @@ export class AiLocalService {
     this.defaultModel = this.configService.get<string>('ollama.model')!;
   }
 
-
   async chat(userMessage: string, sessionId: string, modelOverride?: string) {
     const model = modelOverride || this.defaultModel;
 
@@ -55,13 +54,11 @@ export class AiLocalService {
         sources: Array.from(new Set(uniqueDocs.map((d: any) => d.filename))),
         duration_sec: data.total_duration ? data.total_duration / 1e9 : 0,
       });
-
     } catch (error) {
       this.logger.error('Blocking chat failed', error.message);
       throw new InternalServerErrorException('AI Core is unreachable.');
     }
   }
-
 
   async chatStream(
     userMessage: string,
@@ -94,11 +91,10 @@ export class AiLocalService {
 
           stream.on('data', (chunk: Buffer) => {
             try {
-              const lines = chunkText(chunk)
+              const lines = chunkText(chunk);
 
               for (const line of lines) {
                 const json = JSON.parse(line);
-
 
                 if (json.message && json.message.content) {
                   const text = json.message.content;
@@ -106,14 +102,16 @@ export class AiLocalService {
                   subscriber.next({ data: { reply: text } });
                 }
 
-
                 if (json.done) {
                   subscriber.next({
                     reply: fullBotAnswer,
                     model,
-                    sources: Array.from(new Set(uniqueDocs.map((d: any) => d.filename))),
-                    duration_sec: json.total_duration ? json.total_duration / 1e9 : 0,
-
+                    sources: Array.from(
+                      new Set(uniqueDocs.map((d: any) => d.filename)),
+                    ),
+                    duration_sec: json.total_duration
+                      ? json.total_duration / 1e9
+                      : 0,
                   });
                 }
               }
@@ -123,7 +121,6 @@ export class AiLocalService {
           });
 
           stream.on('end', async () => {
-
             await this.historyService.addMessage(
               sessionId,
               'assistant',
@@ -137,5 +134,4 @@ export class AiLocalService {
         .catch((err) => subscriber.error(err));
     });
   }
-
 }

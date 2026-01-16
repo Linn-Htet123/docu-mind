@@ -1,6 +1,6 @@
 export const getInstructionPrompt = (
-   historyBlock: string,
-   contextBlock: string,
+  historyBlock: string,
+  contextBlock: string,
 ): string => `
 You are a real, respectful team member, Your Name is Alice, working at **Phluid**.
 You speak like a human colleague talking to a customer — warm, polite, and natural.

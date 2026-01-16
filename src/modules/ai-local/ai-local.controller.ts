@@ -13,11 +13,10 @@ import { type Response } from 'express';
 import { ChatApiDocument } from './decorator/chat.swagger';
 import { ChatStreamApiDocument } from './decorator/chat-stream.swagger';
 
-
 @ApiTags('AI')
 @Controller('/ai')
 export class AiLocalController {
-  constructor(private readonly aiService: AiLocalService) { }
+  constructor(private readonly aiService: AiLocalService) {}
 
   @Post('chat')
   @ChatApiDocument()

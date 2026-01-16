@@ -13,4 +13,4 @@ import { LanceDbStore } from './stores/lancedb.store';
   ],
   exports: [VectorService],
 })
-export class VectorModule { }
+export class VectorModule {}

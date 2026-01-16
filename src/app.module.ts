@@ -37,4 +37,4 @@ import { AiLocalModule } from './modules/ai-local/ai-local.module';
     { provide: FILE_SERVICE, useClass: FileStorageService },
   ],
 })
-export class AppModule { }
+export class AppModule {}
