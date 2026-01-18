@@ -1,98 +1,96 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# DocuMind - Portfolio Chatbot
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+DocuMind is a high-performance, personalized portfolio chatbot built with **NestJS**, **LanceDB**, and local LLMs via **Ollama**. It allows you to transform your resume and projects into a searchable knowledge base, enabling visitors to interact with your professional history through a natural, first-person AI representative.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Features
 
-## Description
+- **Local-First AI**: Powered by Ollama for privacy and performance.
+- **RAG Implementation**: Uses Retrieval-Augmented Generation (RAG) with LanceDB for accurate document-based answers.
+- **Dynamic Context**: Rewrites user queries to resolve context and pronouns.
+- **Persistent Chat History**: Stores conversations in a local SQLite database.
+- **Document Ingestion**: Built-in API for uploading and processing PDFs/Docs.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🛠️ Tech Stack
 
-## Project setup
+- **Backend**: [NestJS](https://nestjs.com/)
+- **Vector DB**: [LanceDB](https://lancedb.com/)
+- **Database**: SQLite (TypeORM)
+- **AI Engine**: [Ollama](https://ollama.com/)
+- **Embedding**: `nomic-embed-text`
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## 📋 Prerequisites
 
-```bash
-# development
-$ npm run start
+Ensure you have the following installed:
 
-# watch mode
-$ npm run start:dev
+1.  **Node.js** (v20 or higher)
+2.  **Ollama**: [Download and install](https://ollama.com/)
+    - Pull required models:
+      ```bash
+      ollama pull llama3.2
+      ollama pull qwen2.5:0.5b
+      ollama pull nomic-embed-text
+      ```
 
-# production mode
-$ npm run start:prod
-```
+## ⚙️ Project Setup
 
-## Run tests
+### 1. Installation
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
+### 2. Environment Configuration
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Create a `.env` file in the root directory and configure the following variables (defaults shown):
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+```env
+PORT=3000
+NODE_ENV=development
+
+# Ollama Configuration
+OLLAMA_API_URL=http://localhost:11434/api/chat
+OLLAMA_EMBED_URL=http://localhost:11434/api/embeddings
+OLLAMA_MODEL=llama3.2
+OLLAMA_MODEL_REWRITE=qwen2.5:0.5b
+OLLAMA_MODEL_EMBED=nomic-embed-text
+```
+
+### 3. Run the Project
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Development (watch mode)
+npm run start:dev
+
+# Production mode
+npm run start:prod
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 📖 Usage
 
-Check out a few resources that may come in handy when working with NestJS:
+### Data Ingestion
+To populate the knowledge base, upload your documents (PDF, DOCX) to the ingestion endpoint:
+- **Endpoint**: `POST /knowledge/upload`
+- **Payload**: `Multipart/form-data` with field `files`
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Chatting
+Interact with the chatbot via the UI or directly through the AI module endpoints.
 
-## Support
+### Cleaning Data
+If you need to wipe out all vector data and chat history:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npm run clean:data
+```
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## 🏗️ Architecture
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- `src/modules/ai-local`: Core AI logic, prompt engineering, and LLM orchestration.
+- `src/modules/vector`: Vector store implementation using LanceDB.
+- `src/modules/chat-history`: Session management and history persistence.
+- `src/modules/knowledge`: Document processing and embedding pipeline.
